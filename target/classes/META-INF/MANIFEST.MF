@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: RAJ
+Build-Jdk: 10.0.1
+Implementation-Title: Tap_application
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.biomatiques
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Tap_application
+Created-By: Maven Integration for Eclipse
+
