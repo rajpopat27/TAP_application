@@ -4,31 +4,44 @@ import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.biomatiques.model.LeaveManagement;
 import com.biomatiques.services.LeaveManagementService;
 
-@RestController
+@Controller
 public class LeaveManagementController {
+	
 	@Autowired
 	LeaveManagementService leaveManagementService;
 
-	@RequestMapping(value="/leaveManagement",method=RequestMethod.POST,headers="Accept=application/json")
-	public void addLeave(@RequestBody LeaveManagement leaveManagement) throws ParseException {
-		leaveManagementService.addLeave(leaveManagement);
+	@RequestMapping(value= "/leave.html",method=RequestMethod.GET)
+	public String leaveHomePage() {
+		return "leave";
 	}
+	
+	@RequestMapping(value= "/leaveForm.html",method=RequestMethod.GET)
+	public String leaveForm(LeaveManagement leave) {
+		return "leaveForm";
+	}
+	
+	@RequestMapping(value="/addLeave",method=RequestMethod.POST,headers="Accept=application/json")
+	public void addLeave(@RequestBody LeaveManagement leave) throws ParseException {
+		leaveManagementService.addLeave(leave);
+	}
+	
 	@RequestMapping(value="/leaveManagement",method=RequestMethod.GET,headers="Accept=application/json")
 	public ModelAndView getAllLeave() {
 		ModelAndView model = new ModelAndView("viewAllLeave.html");
 		model.addObject("leaves",leaveManagementService.getAllLeave());
 		return model;
 	}
+	
 	@RequestMapping(value="/leaveManagement/{empId}",method=RequestMethod.GET,headers="Accept=application/json")
 	public List<LeaveManagement> getLeaveByEmpId(@PathVariable long empId) {
 		return leaveManagementService.getLeaveByEmpId(empId);
