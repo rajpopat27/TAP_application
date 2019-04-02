@@ -144,15 +144,15 @@ public class Employee implements Serializable{
         //@Min(1000)
         @NotNull(message = "Salary is mandatory")
 		 @JsonProperty("Salary")
-        public Long salary;
+        public Float salary;
         
         //@NotEmpty
-        @NotBlank(message = "Company Name is mandatory")
+       // @NotBlank(message = "Company Name is mandatory")
 		 @JsonProperty("Company")
 		public String company;
 	    
         //@NotEmpty
-        @NotNull(message = "IrisId Name is mandatory")
+       // @NotNull(message = "IrisId Name is mandatory")
 		@JsonProperty("IrisId")
         @Lob       
         public byte[] irisId;
@@ -324,11 +324,11 @@ public class Employee implements Serializable{
 			this.shiftName = shiftName;
 		}
 
-		public Long getSalary() {
+		public Float getSalary() {
 			return salary;
 		}
 
-		public void setSalary(Long salary) {
+		public void setSalary(Float salary) {
 			this.salary = salary;
 		}
 

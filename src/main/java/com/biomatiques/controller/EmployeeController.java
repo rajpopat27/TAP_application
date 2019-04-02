@@ -1,15 +1,8 @@
 package com.biomatiques.controller;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,19 +10,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.biomatiques.model.Employee;
 import com.biomatiques.model.Iris;
 import com.biomatiques.services.EmployeeService;
+import com.biomatiques.services.ShiftService;
 
 @Controller	
 public class EmployeeController {
 	@Autowired 
 	EmployeeService employeeService;
+	@Autowired
+	ShiftService shiftService;
 	
 	@RequestMapping(value= {"/","index","/dashboard.html"},method=RequestMethod.GET)
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("totalEmployee",employeeService.getAllEmployees().stream().count());
+		model.addAttribute("totalShift", shiftService.getAllShifts().stream().count());		
 		return "dashboard";
 	}
 	@RequestMapping(value= {"/employee.html"},method=RequestMethod.GET)

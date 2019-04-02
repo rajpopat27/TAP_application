@@ -76,7 +76,7 @@ public class AttendanceService {
 	 public boolean addAttendance(String EmpCode) throws ParseException, URISyntaxException {
 		    EmpCode = EmpCode.replaceAll("^\"|\"$", "");
 		    long id = Long.parseLong(EmpCode);
-		 	Employee employee = employeeRepository.findById(id).get();
+		 	Employee employee = employeeRepository.findById(id);
 		 	ShiftPattern shiftPattern = shiftPatternRepository.findById(id);
 		 	String day = LocalDate.now().getDayOfWeek().name().toLowerCase();
 		 	switch (day) { 
@@ -116,6 +116,7 @@ public class AttendanceService {
 			 	attendance.setEmployeeFirstName(employee.getFirstName());
 			 	attendance.setEmployeeLastName(employee.getLastName());
 			 	attendance.setEmployeeId(employee.getId());
+			 	attendance.setHoursCalculated(false);
 		        attendanceRepository.save(attendance); 	
 		        attendanceAdded = true;
 		 	}

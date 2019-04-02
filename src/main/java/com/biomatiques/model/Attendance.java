@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Attendance {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
@@ -51,12 +51,14 @@ public class Attendance {
 	private String employeeLastName;
 	
 	@Column
+	private boolean hoursCalculated;
+	/*@Column
 	private String CheckIn;
 	
 	@Column
 	private String CheckOut;
 //	@ManyToOne
-//	Employee employee;
+*///	Employee employee;
 
 	/*@OneToOne
 	@JoinColumn(name="Employee_ID")
@@ -66,7 +68,7 @@ public class Attendance {
 	private Employee employeeFirstName;
 */
 
-	public String getCheckIn() {
+	/*public String getCheckIn() {
 		return CheckIn;
 	}
 
@@ -74,18 +76,26 @@ public class Attendance {
 		CheckIn = checkIn;
 	}
 
-	public String getCheckOut() {
+	public int getCheckOut() {
 		return CheckOut;
 	}
 
 	public void setCheckOut(String checkOut) {
 		CheckOut = checkOut;
-	}
+	}*/
 
 	public Long getId() {
 		return id;
 	}
 	
+	public boolean getHoursCalculated() {
+		return hoursCalculated;
+	}
+
+	public void setHoursCalculated(boolean hoursCalculated) {
+		this.hoursCalculated = hoursCalculated;
+	}
+
 	public Date getAttendedDate() {
 		return attendedDate;
 	}

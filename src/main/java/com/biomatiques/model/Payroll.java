@@ -8,11 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "attendance")
+@Table(name = "payroll")
 public class Payroll {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
@@ -20,10 +20,21 @@ public class Payroll {
 	private long employeeId;
 	
 	@Column
-	private long hours;
+	private float hours;
 	
 	@Column
-	private long salary;
+	private float salary;
+	
+	@Column 
+	private boolean report_generated;
+
+	public boolean isReport_generated() {
+		return report_generated;
+	}
+
+	public void setReport_generated(boolean report_generated) {
+		this.report_generated = report_generated;
+	}
 
 	public Long getId() {
 		return id;
@@ -41,19 +52,19 @@ public class Payroll {
 		this.employeeId = employeeId;
 	}
 
-	public long getHours() {
+	public float getHours() {
 		return hours;
 	}
 
-	public void setHours(long hours) {
+	public void setHours(float hours) {
 		this.hours = hours;
 	}
 
-	public long getSalary() {
+	public float getSalary() {
 		return salary;
 	}
 
-	public void setSalary(long salary) {
+	public void setSalary(float salary) {
 		this.salary = salary;
 	}
 }

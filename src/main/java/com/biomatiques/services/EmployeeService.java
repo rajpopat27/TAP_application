@@ -44,7 +44,7 @@ public class EmployeeService {
 	}
 	
 	public void addIris(Iris iris) {
-		Employee employee = employeeRepository.findById(iris.getId()).get();
+		Employee employee = employeeRepository.findById(iris.getId());
 		 byte[] iris1 = iris.getLeftIris();
 		employee.setIrisId(iris1);
 		employeeRepository.save(employee);

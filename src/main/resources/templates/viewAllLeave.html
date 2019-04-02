@@ -72,6 +72,11 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-user-tie"></i>
+            <span>Employee</span></a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="attendance.html">
             <i class="fas fa-users"></i>
             <span>Attendance</span></a>
@@ -135,7 +140,7 @@
                 </thead>
                 <tbody>
                         <tr th:each="leave :${leaves}">
-                                <td th:text="${leave.EmpId}"></td>
+                                <td th:text="${leave.Empid}"></td>
                                 <td th:text="${leave.Date1}"></td>
                                 <td th:text="${leave.Date2}"></td>
                                 <td th:text="${leave.Reason}"></td>
