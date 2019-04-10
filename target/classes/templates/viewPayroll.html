@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>TAP - Add leave</title>
+  <title>TAP - Payroll details</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -74,12 +74,12 @@
             <i class="fas fa-calendar-alt"></i>
             <span>Shift</span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="leave.html">
             <i class="fas fa-calendar-day"></i>
             <span>Leave</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="payroll.html">
             <i class="fas fa-cash-register"></i>
             <span>Payroll</span></a>
@@ -103,55 +103,40 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
+            <a href="#">Payroll</a>
           </li>
-          <li class="breadcrumb-item active">Leave Form</li>
+          <li class="breadcrumb-item active">View payroll</li>
         </ol>
 
-        <form action="#" th:action="@{/addLeave}" th:object="${leaveManagement}" method="POST">
-            
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                          <input type="text" id="empId" th:field="*{empId}" class="form-control" placeholder="Employee ID" required="required" > 
-                          <label for="empID">Employee ID</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                          <input type="text" id="date1" th:field="*{date1}" class="form-control" placeholder="Start date" required="required" > 
-                          <label for="date1">From (date)</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                            <input type="text" id="date2" th:field="*{date2}" class="form-control" placeholder="End date" required="required" > 
-                            <label for="date2">To (date)</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <div class="form-label-group">
-                          <input type="text" id="reason" th:field="*{reason}" class="form-control" placeholder="Reason" required="required" > 
-                          <label for="reason">Reason</label>
-                        </div>
-                    </div>
-                </div>
+        <!-- DataTables Example -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            View payroll</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                        <th>ID</th>
+                        <th>Employee ID</th>
+                        <th>Hours</th>
+                        <th>Salary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                        <tr th:each="payroll :${payroll}">
+                                <td th:text="${payroll.id}"></td>
+                                <td th:text="${payroll.employeeId}"></td>
+                                <td th:text="${payroll.hours}"></td>
+                                <td th:text="${payroll.salary}"></td>
+                        </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="form-group">
-                <div class="form-row">
-                <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary btn-block" > Add Leave </button>
-                </div>
-                <div class="col-md-6">
-                        <button type="reset" class="btn btn-primary btn-block" > Reset </button>
-                </div>
-              </div>
-            </div>
+          </div>
+        </div>
 
-        </form>
 
       </div>
       <!-- /.container-fluid -->
@@ -202,8 +187,15 @@
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/datatables/jquery.dataTables.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

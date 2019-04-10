@@ -123,22 +123,6 @@
         <!-- Page Content -->
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-primary o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                  </div>
-                  <div class="mr-5">View all leave</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="viewAllLeave.html">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-  
-            <div class="col-xl-3 col-sm-6 mb-3">
               <div class="card text-white bg-warning o-hidden h-100">
                 <div class="card-body">
                   <div class="card-body-icon">
@@ -156,6 +140,43 @@
             </div>
 
         </div>
+
+        <!-- DataTables Example -->
+        <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              View Leave</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                    	  <th>ID</th>
+                          <th>Employee ID</th>
+                          <th>Start Date</th>
+                          <th>End Date</th>
+                          <th>Reason</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                          <tr th:each="leave :${leave}">
+                          		  <td th:text="${leave.id}"></td>
+                                  <td th:text="${leave.empId}"></td>
+                                  <td th:text="${leave.date1}"></td>
+                                  <td th:text="${leave.date2}"></td>
+                                  <td th:text="${leave.reason}"></td>
+                                  <td><a th:href="@{/editLeave/{id}(id=${leave.id})}">Edit</a></td>
+                                  <td><a th:href="@{/deleteLeave/{id}(id=${leave.id})}">Delete</a></td>
+                          </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
       </div>
       <!-- /.container-fluid -->
 

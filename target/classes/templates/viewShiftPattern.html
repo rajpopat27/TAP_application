@@ -72,7 +72,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="employee.html">
             <i class="fas fa-user-tie"></i>
             <span>Employee</span></a>
         </li>
@@ -117,7 +117,7 @@
           <li class="breadcrumb-item">
             <a href="#">Shift</a>
           </li>
-          <li class="breadcrumb-item active">View shifts</li>
+          <li class="breadcrumb-item active">View shift Patterns</li>
         </ol>
 
         <!-- DataTables Example -->
@@ -131,29 +131,29 @@
                 <thead>
                   <tr>
                         <th>Employee ID</th>
-                        <th>Monday Shift ID</th>
-                        <th>Tuesday Shift ID</th>
-                        <th>Wednesday Shift ID</th>
-                        <th>Thursday Shift ID</th>
-                        <th>Friday Shift ID</th>
-                        <th>Saturday Shift ID</th>
-                        <th>Sunday Shift ID</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                        <th>Sunday</th>
                         <th>Edit</th>
                         <th>Delete</th>
                   </tr>
                 </thead>
                 <tbody>
-                        <tr th:each="shift :${shiftPattern}">
-                                <td th:text="${shift.id}"></td>
-                                <td th:text="${shift.monday}"></td>
-                                <td th:text="${shift.tuesday}"></td>
-                                <td th:text="${shift.wednesday}"></td>
-                                <td th:text="${shift.thursday}"></td>
-                                <td th:text="${shift.friday}"></td>
-                                <td th:text="${shift.saturday}"></td>
-                                <td th:text="${shift.sunday}"></td>
-                                <td><a th:href="@{/editShift/{id}(id=${shift.id})}">Edit</a></td>
-                                <td><a th:href="@{/deleteShift/{id}(id=${shift.id})}">Delete</a></td>
+                        <tr th:each="shiftPattern :${shiftPattern}">
+                                <td th:text="${shiftPattern.id}"></td>
+                                <td th:text="${shiftPattern.monday}"></td>
+                                <td th:text="${shiftPattern.tuesday}"></td>
+                                <td th:text="${shiftPattern.wednesday}"></td>
+                                <td th:text="${shiftPattern.thursday}"></td>
+                                <td th:text="${shiftPattern.friday}"></td>
+                                <td th:text="${shiftPattern.saturday}"></td>
+                                <td th:text="${shiftPattern.sunday}"></td>
+                                <td><a th:href="@{/editShiftPatternattern/{id}(id=${shiftPattern.id})}">Edit</a></td>
+                                <td><a th:href="@{/deleteShiftPatternattern /{id}(id=${shiftPattern.id})}">Delete</a></td>
 </tr>
                 </tbody>
               </table>

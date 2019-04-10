@@ -19,6 +19,7 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
 import com.biomatiques.model.Attendance;
 import com.biomatiques.model.Iris;
+import com.biomatiques.repository.HoursWorkedPayrollRepository;
 import com.biomatiques.services.AttendanceService;
 
 @Controller
@@ -28,8 +29,15 @@ public class AttendanceController {
 	AttendanceService attendanceService;
 	
 	@RequestMapping(value="/attendance.html",method=RequestMethod.GET)
-	public String attendanceHome() {
+	public String attendanceHome(Model model) {
+		model.addAttribute("attendance",attendanceService.getAllAttendance());
 		return "attendance";
+	}
+	
+	@RequestMapping(value="/hoursWorked.html",method=RequestMethod.GET)
+	public String viewHoursWorked(Model model) {
+		model.addAttribute("hoursWorked",attendanceService.getHoursWorked());
+		return "hoursWorked";
 	}
 	
 	//ADD

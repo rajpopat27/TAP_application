@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.biomatiques.model.LeaveManagement;
+import com.biomatiques.model.ShiftSwap;
 import com.biomatiques.repository.LeaveManagementRepository;
 
 @Service
@@ -35,6 +36,9 @@ public class LeaveManagementService {
         leaveManagementRepository.findAll().forEach(leaveList::add);
         return leaveList;
 	}
+	public LeaveManagement getLeaveById(Long id) {
+		return leaveManagementRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));		
+	}
 	public List<LeaveManagement> getLeaveByEmpId(long empId) {
 		List<LeaveManagement> leaveList = new ArrayList<>();
 		leaveManagementRepository.findLeaveByEmpId(empId).forEach(leaveList::add);
@@ -44,9 +48,10 @@ public class LeaveManagementService {
 	 public void updateLeave(LeaveManagement leaveManagement) {
 	    	leaveManagementRepository.save(leaveManagement);
 	    }
-	    public void deleteLeave(LeaveManagement leaveManagement) {
-	     leaveManagement.setId(leaveManagementRepository.findId(leaveManagement.getEmpId(), leaveManagement.getDate1(),leaveManagement.getDate2()));
-    	 leaveManagementRepository.delete(leaveManagement);
+	    public void deleteLeave(long id) {
+	     /*leaveManagement.setId(leaveManagementRepository.findId(leaveManagement.getEmpId(), leaveManagement.getDate1(),leaveManagement.getDate2()));
+    	 leaveManagementRepository.delete(leaveManagement);*/
+	    	leaveManagementRepository.deleteById(id);
 	    }
 	    
     public boolean addLeaveAttendance(long empId) throws ParseException {

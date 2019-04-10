@@ -23,22 +23,22 @@ public class LeaveManagement {
 	private long id;
 	
 	@NotNull
-	@JsonProperty("EmpId")	
+	//@JsonProperty("EmpId")	
 	@Column
     public long empId;
 	
 	@NotEmpty
-	@JsonProperty("Date1")
+	////@JsonProperty("Date1")
 	@Column
     public String date1;
 	
 	@NotEmpty
-	@JsonProperty("Date2")
+	//@JsonProperty("Date2")
 	@Column
     public String date2;
 	
 	@NotEmpty
-	@JsonProperty("Reason")
+	//@JsonProperty("Reason")
 	@Column
 	public String reason;
 

@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>TAP - Add leave</title>
+  <title>TAP - Swap shift</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,6 +31,18 @@
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
     </button>
+
+    <!-- Navbar Search -->
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
@@ -69,12 +81,12 @@
             <i class="fas fa-users"></i>
             <span>Attendance</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="shift.html">
             <i class="fas fa-calendar-alt"></i>
             <span>Shift</span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="leave.html">
             <i class="fas fa-calendar-day"></i>
             <span>Leave</span></a>
@@ -105,37 +117,29 @@
           <li class="breadcrumb-item">
             <a href="index.html">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Leave Form</li>
+          <li class="breadcrumb-item active">Swap Shift</li>
         </ol>
 
-        <form action="#" th:action="@{/addLeave}" th:object="${leaveManagement}" method="POST">
+        <form action="#" th:action="@{/addShiftSwap}" th:object="${shiftSwap}" method="POST">
             
             <div class="form-group">
                 <div class="form-row">
-                    <div class="col-md-4">
+                    <div class="col-md-4">  
                         <div class="form-label-group">
-                          <input type="text" id="empId" th:field="*{empId}" class="form-control" placeholder="Employee ID" required="required" > 
-                          <label for="empID">Employee ID</label>
+                          <input type="text" id="emp1" th:field="*{emp1}" class="form-control" placeholder="Employee ID" required="required" > 
+                          <label for="emp1">Employee ID</label>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-label-group">
-                          <input type="text" id="date1" th:field="*{date1}" class="form-control" placeholder="Start date" required="required" > 
-                          <label for="date1">From (date)</label>
+                          <input type="text" id="emp2" th:field="*{emp2}" class="form-control" placeholder="Employee ID" required="required" > 
+                          <label for="emp2">Employee ID</label>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-label-group">
-                            <input type="text" id="date2" th:field="*{date2}" class="form-control" placeholder="End date" required="required" > 
-                            <label for="date2">To (date)</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <div class="form-label-group">
-                          <input type="text" id="reason" th:field="*{reason}" class="form-control" placeholder="Reason" required="required" > 
-                          <label for="reason">Reason</label>
+                            <input type="text" id="date" th:field="*{date}" class="form-control" placeholder="Date" required="required" > 
+                            <label for="date">Date</label>
                         </div>
                     </div>
                 </div>
@@ -143,11 +147,11 @@
             <div class="form-group">
                 <div class="form-row">
                 <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary btn-block" > Add Leave </button>
+                        <button type="submit" class="btn btn-primary btn-block" > Confirm Swap </button>
                 </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                         <button type="reset" class="btn btn-primary btn-block" > Reset </button>
-                </div>
+                </div> -->
               </div>
             </div>
 

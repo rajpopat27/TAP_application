@@ -103,6 +103,7 @@ public class ShiftSwapService {
 		 
 		shiftPatternRepository.save(shiftPatternEmp1);
 		shiftPatternRepository.save(shiftPatternEmp2);
+		shiftSwapRepository.save(shiftSwap);
 	}
 	
 	public List<ShiftSwap> getAllShiftSwap() {
@@ -110,4 +111,17 @@ public class ShiftSwapService {
         shiftSwapRepository.findAll().forEach(ShiftSwapList::add);
         return ShiftSwapList;
     }
+	
+	 public void updateShiftSwap(ShiftSwap shiftSwap) {
+	    	shiftSwapRepository.save(shiftSwap);
+	    }
+    public void deleteShiftSwap(long id) throws ParseException {
+    	ShiftSwap shiftSwap = new ShiftSwap();
+    	shiftSwap = shiftSwapRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));	
+    	swapShift(shiftSwap);
+    	shiftSwapRepository.deleteById(id);
+    }
+    public ShiftSwap getShiftSwapById(Long id) {
+		return shiftSwapRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));		
+	}
 }

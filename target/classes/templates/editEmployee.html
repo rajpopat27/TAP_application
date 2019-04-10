@@ -64,7 +64,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <!-- <ul class="sidebar navbar-nav">
+    <ul class="sidebar navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="dashboard.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -72,7 +72,7 @@
           </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="employee.html">
             <i class="fas fa-user-tie"></i>
             <span>Employee</span></a>
         </li>
@@ -106,7 +106,7 @@
             <i class="fas fa-cogs"></i>
             <span>Master Setting</span></a>
         </li>
-      </ul> -->
+      </ul>
 
     <div id="content-wrapper">
 
@@ -117,7 +117,7 @@
           <li class="breadcrumb-item">
             <a href="dashboard.html">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Employee Form</li>
+          <li class="breadcrumb-item active">Edit Employee</li>
         </ol>
 
         <form action="#" th:action="@{/update/{id}(id=${employee.id})}" th:object="${employee}" method="POST">
@@ -287,18 +287,18 @@
                     </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                     <div class="form-label-group">
                         <input type="text" id="irisId" th:field="*{irisId}" class="form-control" placeholder="Iris  Id" >
                         <label for="irisId">Iris Id</label>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <div class="form-row">
-                    <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary btn-block" > Add Employee </button>
+                    <div class="col-md-3" align="center">
+                            <button type="submit" class="btn btn-primary btn-block" > Update Employee </button>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3" align="center">
                             <button type="reset" class="btn btn-primary btn-block" > Reset </button>
                     </div>
                   </div>

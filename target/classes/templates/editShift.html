@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>TAP - Add shift</title>
+  <title>TAP - Edit shift</title>
 
   <!-- Custom fonts for this template-->
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,18 +31,6 @@
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
     </button>
-
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
@@ -112,7 +100,7 @@
           <li class="breadcrumb-item">
             <a href="index.html">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Shift Form</li>
+          <li class="breadcrumb-item active">Edit Shift</li>
         </ol>
 
         <form action="#" th:action="@{/updateShift/{id}(id=${shift.id})}" th:object="${shift}" method="POST">
@@ -127,13 +115,13 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-label-group">
-                          <input type="text" id="startTime" th:field="*{startTime}" class="form-control" placeholder="Start time" required="required" > 
+                          <input type="time" id="startTime" th:field="*{startTime}" class="form-control" placeholder="Start time" required="required" > 
                           <label for="startTime">Start Time</label>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-label-group">
-                            <input type="text" id="endTime" th:field="*{endTime}" class="form-control" placeholder="End Time" required="required" > 
+                            <input type="time" id="endTime" th:field="*{endTime}" class="form-control" placeholder="End Time" required="required" > 
                             <label for="endTime">End time</label>
                         </div>
                     </div>
@@ -141,10 +129,10 @@
             </div>
             <div class="form-group">
                 <div class="form-row">
-                <div class="col-md-6">
+                <div class="col-md-3" align="center">
                         <button type="submit" class="btn btn-primary btn-block" > Update Shift </button>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3" align="center">
                         <button type="reset" class="btn btn-primary btn-block" > Reset </button>
                 </div>
               </div>

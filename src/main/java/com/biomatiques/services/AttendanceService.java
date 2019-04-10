@@ -1,5 +1,4 @@
 package com.biomatiques.services;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,17 +11,17 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.biomatiques.controller.AttendanceController;
 import com.biomatiques.model.Attendance;
 import com.biomatiques.model.Employee;
+import com.biomatiques.model.Hours_worked_payroll;
 import com.biomatiques.model.Shift;
 import com.biomatiques.model.ShiftPattern;
 import com.biomatiques.repository.AttendanceRepository;
 import com.biomatiques.repository.EmployeeRepository;
+import com.biomatiques.repository.HoursWorkedPayrollRepository;
 import com.biomatiques.repository.ShiftPatternRepository;
 import com.biomatiques.repository.ShiftRepository;
 
@@ -37,6 +36,8 @@ public class AttendanceService {
 	    private ShiftPatternRepository shiftPatternRepository;
 	 @Autowired
 	    private ShiftRepository shiftRepository;
+	 @Autowired
+	 	private HoursWorkedPayrollRepository hoursWorkedRepository;
 	 
 	 @Autowired
 	 	private AttendanceController attendanceController;
@@ -67,6 +68,11 @@ public class AttendanceService {
 	        attendanceRepository.findByemployeeLastName(employeeLastName).forEach(attendanceList::add);
 	        return attendanceList;
 	    }*/
+	 public List<Hours_worked_payroll> getHoursWorked(){
+		 List<Hours_worked_payroll> list = new ArrayList<>();
+		 hoursWorkedRepository.findAll() .forEach(list::add);
+		 return list;
+	 }
 	 
 	 public List<Attendance> getAttendanceByEmployeeFirstName(String firstName) {
 	        List<Attendance> attendanceList = new ArrayList<>();

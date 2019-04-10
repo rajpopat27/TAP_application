@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import com.biomatiques.model.Employee;
 import com.biomatiques.model.Iris;
 import com.biomatiques.services.EmployeeService;
 import com.biomatiques.services.ShiftService;
+import java.util.List;
 
 @Controller	
 public class EmployeeController {
@@ -30,7 +32,8 @@ public class EmployeeController {
 		return "dashboard";
 	}
 	@RequestMapping(value= {"/employee.html"},method=RequestMethod.GET)
-	public String employee() {
+	public String employee(Model model) {
+		model.addAttribute("employees", employeeService.getAllEmployees());
 		return "employee";
 	}
 	@RequestMapping(value= {"/employeeForm.html"},method=RequestMethod.GET)
@@ -100,7 +103,7 @@ public class EmployeeController {
 	         
 	    employeeService.updateEmployee(employee);
 	    model.addAttribute("employees",employeeService.getAllEmployees());
-	    return "redirect:/viewEmployee.html";	
+	    return "redirect:/employee.html";	
 	}
 	
 	//DELETE     
@@ -118,6 +121,7 @@ public class EmployeeController {
 		employeeService.addIris(iris);		
 		return "redirect:/viewEmployee.html";
 	}
+	
 	
 	
 	
