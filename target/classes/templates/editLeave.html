@@ -9,16 +9,16 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>TAP - Payroll details</title>
+  <title>TAP - Update leave</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Page level plugin CSS-->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin.css" rel="stylesheet">
+  <link href="/css/sb-admin.css" rel="stylesheet">
 
 </head>
 
@@ -31,18 +31,6 @@
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
     </button>
-
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-    <div class="input-group">
-      <!-- <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-primary" type="button">
-          <i class="fas fa-search"></i>
-        </button>
-      </div> -->
-    </div>
-    </form>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
@@ -86,12 +74,12 @@
             <i class="fas fa-calendar-alt"></i>
             <span>Shift</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="leave.html">
             <i class="fas fa-calendar-day"></i>
             <span>Leave</span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="payroll.html">
             <i class="fas fa-cash-register"></i>
             <span>Payroll</span></a>
@@ -115,48 +103,59 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="#">Payroll</a>
+            <a href="index.html">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">View payroll</li>
+          <li class="breadcrumb-item active">Update Leave</li>
         </ol>
 
+        <form action="#" th:action="@{/updateLeave/{id}(id=${leaveManagement.id})}" th:object="${leaveManagement}" method="POST">
 
-
-        <!-- DataTables Example -->
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fas fa-table"></i>
-            View payroll
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              Toggle to view paid records only.
-                <label class="switch">
-                    <input type="checkbox" id="check1" onclick="myFunction()">
-                    <span class="slider round"></span>
-                  </label>
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                        <th>ID</th>
-                        <th>Employee ID</th>
-                        <th>Hours</th>
-                        <th>Salary</th>
-                  </tr>
-                </thead>
-                <tbody>
-                        <tr th:each="payroll :${payroll}">
-                                <td th:text="${payroll.id}"></td>
-                                <td th:text="${payroll.employeeId}"></td>
-                                <td th:text="${payroll.hours}"></td>
-                                <td th:text="${payroll.salary}"></td>
-                        </tr>
-                </tbody>
-              </table>
+          <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <div class="form-label-group">
+                      <input type="text" id="empId" th:field="*{empId}" class="form-control" placeholder="Employee ID" required="required" > 
+                      <label for="empId">Employee ID</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-label-group">
+                      <input type="text" id="date1" th:field="*{date1}" class="form-control" placeholder="Start date" required="required" > 
+                      <label for="date1">Start date</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-label-group">
+                        <input type="text" id="date2" th:field="*{date2}" class="form-control" placeholder="End date" required="required" > 
+                        <label for="date2">End date</label>
+                    </div>
+                </div>
             </div>
           </div>
-        </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="reason" th:field="*{reason}" class="form-control" placeholder="Reason" required="required" > 
+                  <label for="reason">Reason</label>
+                </div>
+              </div>
+            </div>
+          </div>
+            
+  
+            <div class="form-group">
+                <div class="form-row">
+                <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary btn-block" > Update Leave </button>
+                </div>
+                <div class="col-md-6">
+                        <button type="reset" class="btn btn-primary btn-block" > Reset </button>
+                </div>
+              </div>
+            </div>
 
+        </form>
 
       </div>
       <!-- /.container-fluid -->
@@ -201,37 +200,14 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Page level plugin JavaScript-->
-  <script src="vendor/datatables/jquery.dataTables.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin.min.js"></script>
-
-  <!-- Demo scripts for this page-->
-  <script src="js/demo/datatables-demo.js"></script>
-
-  <!-- For toggle (checkbox) -->
-  <script type="text/javascript">
-    function myFunction() {
-    // Get the checkbox
-    var checkBox = document.getElementById("check1");
-
-    // If the checkbox is checked, display the output text
-      if (checkBox.checked == true){
-        window.location="viewGeneratedPayroll.html";
-      }  
-      else {
-        window.location="viewPayroll.html";
-      }
-    } 
-  </script>
+  <script src="/js/sb-admin.min.js"></script>
 
 </body>
 

@@ -117,7 +117,7 @@
           <li class="breadcrumb-item">
             <a href="#">Payroll</a>
           </li>
-          <li class="breadcrumb-item active">View payroll</li>
+          <li class="breadcrumb-item active">View houes worked</li>
         </ol>
 
 
@@ -130,26 +130,19 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              Toggle to view paid records only.
-                <label class="switch">
-                    <input type="checkbox" id="check1" onclick="myFunction()">
-                    <span class="slider round"></span>
-                  </label>
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                        <th>ID</th>
-                        <th>Employee ID</th>
-                        <th>Hours</th>
-                        <th>Salary</th>
+                        <th>Employee ID</th>                        
+                        <th>Hours worked</th>
+                        <th>Payroll</th>
                   </tr>
                 </thead>
                 <tbody>
-                        <tr th:each="payroll :${payroll}">
-                                <td th:text="${payroll.id}"></td>
-                                <td th:text="${payroll.employeeId}"></td>
-                                <td th:text="${payroll.hours}"></td>
-                                <td th:text="${payroll.salary}"></td>
+                        <tr th:each="hoursWorked :${hoursWorked}">
+                                <td th:text="${hoursWorked.emp_id}"></td>
+                                <td th:text="${hoursWorked.No_of_hours}"></td>
+                                <td th:text="${hoursWorked.payroll_generated} ? 'Generated' : 'Pending'"></td>
                         </tr>
                 </tbody>
               </table>
@@ -216,22 +209,6 @@
 
   <!-- Demo scripts for this page-->
   <script src="js/demo/datatables-demo.js"></script>
-
-  <!-- For toggle (checkbox) -->
-  <script type="text/javascript">
-    function myFunction() {
-    // Get the checkbox
-    var checkBox = document.getElementById("check1");
-
-    // If the checkbox is checked, display the output text
-      if (checkBox.checked == true){
-        window.location="viewGeneratedPayroll.html";
-      }  
-      else {
-        window.location="viewPayroll.html";
-      }
-    } 
-  </script>
 
 </body>
 

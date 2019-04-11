@@ -43,4 +43,7 @@ public interface HoursWorkedPayrollRepository extends CrudRepository<Hours_worke
 	@Transactional
 	@Query(value="update hours_worked set payroll_generated = 1 WHERE payroll_generated=0",nativeQuery=true)
 	public void updatePayrollGenerated();
+
+	@Query(value="Select * from hours_worked where payroll_generated=0",nativeQuery=true)
+	public List<Hours_worked_payroll> getHoursWorked();
 }

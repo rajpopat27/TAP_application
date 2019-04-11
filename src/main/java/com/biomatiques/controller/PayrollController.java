@@ -30,10 +30,17 @@ public class PayrollController {
 	}
 	
 	@RequestMapping(value="/viewPayroll.html",method=RequestMethod.GET,headers="Accept=application/json")
-	public String generatePayroll(Model model) {
+	public String viewPayroll(Model model) {
 		payrollService.generatePayrollHours();
-		model.addAttribute("payroll", payrollService.getAllPayroll());
+		model.addAttribute("payroll", payrollService.getRemainingPayroll());
 		return "viewPayroll.html";
+	}
+	
+	@RequestMapping(value="/viewGeneratedPayroll.html",method=RequestMethod.GET,headers="Accept=application/json")
+	public String viewGeneratedPayroll(Model model) {
+		payrollService.generatePayrollHours();
+		model.addAttribute("payroll", payrollService.getGeneratedPayroll());
+		return "viewGeneratedPayroll.html";
 	}
 	
 	@RequestMapping(value = "/payrollPdfReport", method = RequestMethod.GET,
@@ -53,4 +60,11 @@ public class PayrollController {
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(bis));
     }
+	
+	@RequestMapping(value="/viewHoursWorked.html",method=RequestMethod.GET,headers="Accept=application/json")
+	public String viewHoursWorked(Model model) {
+		
+		model.addAttribute("hoursWorked",payrollService.getHoursWorked());
+		return "viewHoursWorked.html";
+	}
 }

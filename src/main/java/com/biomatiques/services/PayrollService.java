@@ -47,9 +47,30 @@ public class PayrollService {
 	 }
 	 
 	 
+	 public List<Payroll> getRemainingPayroll(){
+		 List<Payroll> payrollList = new ArrayList<>();
+		 payrollList=payrollRepository.getRemainingPayroll();
+		 return payrollList;
+	 }
 	 
+	 public List<Payroll> getGeneratedPayroll(){
+		 List<Payroll> payrollList = new ArrayList<>();
+		 payrollList=payrollRepository.getGeneratedPayroll();
+		 return payrollList;
+	 }
 	 
-	 
+	 public List<Hours_worked_payroll> getHoursWorked() {
+		 List<Hours_worked_payroll> hoursWorked = new ArrayList<>();
+		 hoursWorked = hoursRepository.getHoursWorked();
+		 List<Hours_worked_payroll>temp = hoursWorked.stream()
+		         .collect(Collectors.groupingBy(Hours_worked_payroll::getEmp_id))
+		         .entrySet().stream()
+		         .map(e -> e.getValue().stream()
+		             .reduce((f1,f2) -> new Hours_worked_payroll(f1.getEmp_id(),f1.getNo_of_hours() + f2.getNo_of_hours())))
+		             .map(f -> f.get())
+		             .collect(Collectors.toList());
+		 return temp;
+	 }
 	 
 	 
 	 

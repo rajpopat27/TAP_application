@@ -21,4 +21,10 @@ public interface PayrollRepository extends CrudRepository<Payroll, Long>{
 	
 	@Query(value = "Select * from payroll where report_generated=0 ",nativeQuery=true)
 	public List<Payroll> getEmployeesForReportGeneration();
+	
+	@Query(value = "Select * from payroll where report_generated=0 ",nativeQuery=true)
+	public List<Payroll> getRemainingPayroll();
+	
+	@Query(value = "Select * from payroll where report_generated=1 ",nativeQuery=true)
+	public List<Payroll> getGeneratedPayroll();
 }

@@ -32,6 +32,18 @@
       <i class="fas fa-bars"></i>
     </button>
 
+    <!-- Navbar Search -->
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+    <div class="input-group">
+      <!-- <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button">
+          <i class="fas fa-search"></i>
+        </button>
+      </div> -->
+    </div>
+    </form>
+
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
       <li class="nav-item dropdown no-arrow">
@@ -60,7 +72,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="employee.html">
             <i class="fas fa-user-tie"></i>
             <span>Employee</span></a>
         </li>
@@ -108,13 +120,21 @@
           <li class="breadcrumb-item active">View payroll</li>
         </ol>
 
+
+
         <!-- DataTables Example -->
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            View payroll</div>
+            View payroll
+          </div>
           <div class="card-body">
             <div class="table-responsive">
+              Toggle to view paid records only.
+                <label class="switch">
+                    <input type="checkbox" id="check1" onclick="myFunction()">
+                    <span class="slider round"></span>
+                  </label>
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
@@ -196,6 +216,22 @@
 
   <!-- Demo scripts for this page-->
   <script src="js/demo/datatables-demo.js"></script>
+
+  <!-- For toggle (checkbox) -->
+  <script type="text/javascript">
+    function myFunction() {
+    // Get the checkbox
+    var checkBox = document.getElementById("check1");
+
+    // If the checkbox is checked, display the output text
+      if (checkBox.checked == true){
+        window.location="viewGeneratedPayroll.html";
+      }  
+      else {
+        window.location="viewPayroll.html";
+      }
+    } 
+  </script>
 
 </body>
 
