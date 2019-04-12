@@ -25,7 +25,7 @@ public class EmployeeController {
 	@Autowired
 	ShiftService shiftService;
 	
-	@RequestMapping(value= {"/","index","/dashboard.html"},method=RequestMethod.GET)
+	@RequestMapping(value= {"/index","/dashboard.html"},method=RequestMethod.GET)
 	public String index(Model model) {
 		model.addAttribute("totalEmployee",employeeService.getAllEmployees().stream().count());
 		model.addAttribute("totalShift", shiftService.getAllShifts().stream().count());		

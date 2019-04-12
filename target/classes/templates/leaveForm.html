@@ -109,37 +109,41 @@
         </ol>
 
         <form action="#" th:action="@{/addLeave}" th:object="${leaveManagement}" method="POST">
-            
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                          <input type="text" id="empId" th:field="*{empId}" class="form-control" placeholder="Employee ID" required="required" > 
-                          <label for="empID">Employee ID</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                          <input type="text" id="date1" th:field="*{date1}" class="form-control" placeholder="Start date" required="required" > 
-                          <label for="date1">From (date)</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                            <input type="text" id="date2" th:field="*{date2}" class="form-control" placeholder="End date" required="required" > 
-                            <label for="date2">To (date)</label>
-                        </div>
+
+          <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <div class="form-label-group">
+                      <input type="text" id="empId" th:field="*{empId}" class="form-control" placeholder="Employee ID" required="required" > 
+                      <label for="empId">Employee ID</label>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <div class="form-label-group">
-                          <input type="text" id="reason" th:field="*{reason}" class="form-control" placeholder="Reason" required="required" > 
-                          <label for="reason">Reason</label>
-                        </div>
+                <div class="col-md-4">
+                    <div class="form-label-group">
+                      <input type="text" id="date1" th:field="*{date1}" class="form-control" placeholder="Start date" required="required" > 
+                      <label for="date1">Start date</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-label-group">
+                        <input type="text" id="date2" th:field="*{date2}" class="form-control" placeholder="End date" required="required" > 
+                        <label for="date2">End date</label>
                     </div>
                 </div>
             </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="reason" th:field="*{reason}" class="form-control" placeholder="Reason" required="required" > 
+                  <label for="reason">Reason</label>
+                </div>
+              </div>
+            </div>
+          </div>
+            
+  
             <div class="form-group">
                 <div class="form-row">
                 <div class="col-md-6">
