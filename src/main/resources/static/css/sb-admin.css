@@ -10554,7 +10554,7 @@ body {
 }
 
 .sidebar .nav-item .nav-link:active, .sidebar .nav-item .nav-link:focus, .sidebar .nav-item .nav-link:hover {
-  background-color: #1dbbd6;
+  background-color: #25558e;
 }
 
 .sidebar.toggled {
@@ -10735,7 +10735,8 @@ footer.sticky-footer .copyright {
 
 @media (min-width: 768px) {
   footer.sticky-footer {
-    width: calc(100% - 225px);
+    width: calc(100% - 170px);
+    height:50px;
   }
 }
 
