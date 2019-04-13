@@ -10,6 +10,7 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+ @import url('https://fonts.googleapis.com/css?family=Quicksand:500');
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -37,8 +38,9 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
+/*   
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
 }
 
 *,
@@ -49,7 +51,8 @@
 }
 
 html {
-  font-family: sans-serif;
+  
+  font-family: 'Quicksand', sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -61,7 +64,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Quicksand', sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -189,7 +192,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1em;
 }
 
@@ -2610,15 +2613,19 @@ fieldset:disabled a.btn {
 .btn-primary {
   color: #fff;
   /* background-color: #007bff; */
-  background: rgb(0,68,56);
-  background: linear-gradient(135deg, rgba(0,68,56,1) 0%, rgba(11,137,99,1) 64%, rgba(22,208,143,1) 100%); 
-  border-color: #004438;
+  background: #03a9f4;
+  border-color: #03a9f4;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0069d9;
+  background-color: #0081bc;
   border-color: #0062cc;
+}
+
+.btn-primary:active {
+  transform: translateY(4px);
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -3207,6 +3214,7 @@ fieldset:disabled a.btn {
 .btn-block {
   display: block;
   width: 100%;
+  border-radius: 2rem;
 }
 
 .btn-block + .btn-block {
@@ -4835,6 +4843,7 @@ input[type="button"].btn-block {
 
 .navbar-dark .navbar-brand {
   color: #fff;
+  font-size: x-large;
 }
 
 .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
@@ -4894,8 +4903,9 @@ input[type="button"].btn-block {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+  /* border: 1px solid rgba(0, 0, 0, 0.125); */
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card > hr {
@@ -5180,8 +5190,8 @@ input[type="button"].btn-block {
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #e9ecef;
-  border-radius: 0.25rem;
+  background-color: #d1d5da;
+  border-radius: 0.6rem;
 }
 
 .breadcrumb-item + .breadcrumb-item {
@@ -6759,8 +6769,8 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background: rgb(32,83,116);
-  background: linear-gradient(135deg, rgba(32,83,116,1) 50%, rgba(39,160,158,1) 100%); 
+  background: rgb(0,80,117);
+  background: linear-gradient(146deg, rgba(0,80,117,1) 0%, rgba(17,125,172,1) 25%, rgba(24,155,211,1) 50%, rgba(29,187,214,1) 75%, rgba(114,199,236,1) 100%);
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -6780,8 +6790,8 @@ button.bg-secondary:focus {
 }
 
 .bg-success {
-  background: rgb(48,206,136);
-  background: linear-gradient(135deg, rgba(48,206,136,1) 50%, rgba(39,160,158,1) 100%);   
+  background: rgb(0,80,117);
+  background: linear-gradient(146deg, rgba(0,80,117,1) 0%, rgba(17,125,172,1) 25%, rgba(24,155,211,1) 50%, rgba(29,187,214,1) 75%, rgba(114,199,236,1) 100%);
 }
 
 a.bg-success:hover, a.bg-success:focus,
@@ -6801,8 +6811,8 @@ button.bg-info:focus {
 }
 
 .bg-warning {
-  background: rgb(39,160,158);
-  background: linear-gradient(135deg, rgba(39,160,158,1) 50%, rgba(48,206,136,1) 100%); 
+  background: rgb(0,80,117);
+  background: linear-gradient(146deg, rgba(0,80,117,1) 0%, rgba(17,125,172,1) 25%, rgba(24,155,211,1) 50%, rgba(29,187,214,1) 75%, rgba(114,199,236,1) 100%);
 }
 
 a.bg-warning:hover, a.bg-warning:focus,
@@ -6812,8 +6822,8 @@ button.bg-warning:focus {
 }
 
 .bg-danger {
-  background: rgb(32,83,116);
-  background: linear-gradient(315deg, rgba(32,83,116,1) 50%, rgba(39,160,158,1) 100%);  
+  background: rgb(0,80,117);
+  background: linear-gradient(146deg, rgba(0,80,117,1) 0%, rgba(17,125,172,1) 25%, rgba(24,155,211,1) 50%, rgba(29,187,214,1) 75%, rgba(114,199,236,1) 100%);
 }
 
 a.bg-danger:hover, a.bg-danger:focus,
@@ -6833,7 +6843,8 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #19395f !important;
+  background: rgb(3,6,9);
+  background: linear-gradient(90deg, rgba(3,6,9,1) 0%, rgba(10,21,35,1) 15%, rgba(12,26,44,1) 27%, rgba(14,32,52,1) 40%, rgba(16,37,61,1) 55%, rgba(19,42,70,1) 70%, rgba(21,47,78,1) 85%, rgba(23,52,87,1) 100%);
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
@@ -10459,7 +10470,9 @@ body {
 }
 
 .navbar-nav .nav-item.active .nav-link {
-  color: #30ce88;
+  background: rgb(6,154,180);
+  background: linear-gradient(135deg, rgba(6,154,180,1) 0%, rgba(29,187,214,1) 50%);
+  color: #000;
 }
 
 .navbar-nav .nav-item.dropdown .dropdown-toggle::after {
@@ -10511,8 +10524,6 @@ body {
 
 .sidebar .nav-item .nav-link {
   text-align: center;
-  padding: 0.75rem 1rem;
-  width: 90px;
 }
 
 .sidebar .nav-item .nav-link span {
@@ -10539,11 +10550,11 @@ body {
 }
 
 .sidebar .nav-item .nav-link {
-  color: rgba(255, 255, 255, 0.5);
+  color: #fff;
 }
 
 .sidebar .nav-item .nav-link:active, .sidebar .nav-item .nav-link:focus, .sidebar .nav-item .nav-link:hover {
-  color: #30ce88;
+  background-color: #1dbbd6;
 }
 
 .sidebar.toggled {
@@ -10553,14 +10564,14 @@ body {
 
 @media (min-width: 768px) {
   .sidebar {
-    width: 225px !important;
+    width: 170px !important;
   }
   .sidebar .nav-item .nav-link {
     display: block;
     width: 100%;
     text-align: left;
     padding: 1rem;
-    width: 225px;
+    width: 170px;
   }
   .sidebar .nav-item .nav-link span {
     font-size: 1rem;
@@ -10796,4 +10807,12 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+/* For LOGO */
+.logo {
+  width: 40px;
+}
+
+.logout {
+  color: #fff;
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.biomatiques.model.Employee;
 import com.biomatiques.model.Iris;
+import com.biomatiques.model.Login;
 import com.biomatiques.services.EmployeeService;
 import com.biomatiques.services.ShiftService;
 import java.util.List;
@@ -27,23 +28,47 @@ public class EmployeeController {
 	
 	@RequestMapping(value= {"/index","/dashboard.html"},method=RequestMethod.GET)
 	public String index(Model model) {
-		model.addAttribute("totalEmployee",employeeService.getAllEmployees().stream().count());
-		model.addAttribute("totalShift", shiftService.getAllShifts().stream().count());		
-		return "dashboard";
+		if(Login.loggedin==true) {
+			model.addAttribute("totalEmployee",employeeService.getAllEmployees().stream().count());
+			model.addAttribute("totalShift", shiftService.getAllShifts().stream().count());	
+			//model.addAttribute("indexLabel", employeeService.get)
+			return "dashboard";
+		}
+		else {
+			return "error1.html";
+		}
 	}
 	@RequestMapping(value= {"/employee.html"},method=RequestMethod.GET)
 	public String employee(Model model) {
-		model.addAttribute("employees", employeeService.getAllEmployees());
-		return "employee";
+		if(Login.loggedin==true) {
+			model.addAttribute("employees", employeeService.getAllEmployees());
+			return "employee";
+		}
+		else {
+			return "error1.html";
+		}
+		
 	}
 	@RequestMapping(value= {"/employeeForm.html"},method=RequestMethod.GET)
 	public String employeeForm(Employee employee) {
-		return "employeeForm";
+		if(Login.loggedin==true) {
+			return "employeeForm";
+		}
+		else {
+			return "error1.html";
+		}
+		
 	}
 	@RequestMapping(value= {"/viewEmployee.html"},method=RequestMethod.GET)
 	public String view(Model model) {
-		model.addAttribute("employees", employeeService.getAllEmployees());
-		return "viewEmployee.html";
+		if(Login.loggedin==true) {
+			model.addAttribute("employees", employeeService.getAllEmployees());
+			return "viewEmployee.html";
+		}
+		else {
+			return "error1.html";
+		}
+		
 	}
 
 	//Pagiantion
@@ -88,9 +113,14 @@ public class EmployeeController {
 	        employee.setId(id);
 	        return "update-employee";
 	    }*/
-	         
-	    model.addAttribute("employee",employeeService.getEmployeeById(id));
-	    return "editEmployee";	
+		if(Login.loggedin==true) {
+			 model.addAttribute("employee",employeeService.getEmployeeById(id));
+			    return "editEmployee";	
+		}
+		else {
+			return "error1.html";
+		}
+	   
 	}
 	
 	//UPDATE
@@ -100,26 +130,43 @@ public class EmployeeController {
 	        employee.setId(id);
 	        return "update-employee";
 	    }*/
-	         
-	    employeeService.updateEmployee(employee);
-	    model.addAttribute("employees",employeeService.getAllEmployees());
-	    return "redirect:/employee.html";	
+		if(Login.loggedin==true) {
+			employeeService.updateEmployee(employee);
+		    model.addAttribute("employees",employeeService.getAllEmployees());
+		    return "redirect:/employee.html";	
+		}
+		else {
+			return "error1.html";
+		}  
+	    
 	}
 	
 	//DELETE     
 	@RequestMapping(value="/delete/{id}",method=RequestMethod.GET)
 	public String deleteEmployee(@PathVariable("id") long id, Model model) {
-	    Employee employee = employeeService.getEmployeeById(id);
-	    employeeService.deleteEmployee(employee.getId());
-	    model.addAttribute("employees", employeeService.getAllEmployees());
-	    return "redirect:/viewEmployee.html";	
+		if(Login.loggedin==true) {
+			Employee employee = employeeService.getEmployeeById(id);
+		    employeeService.deleteEmployee(employee.getId());
+		    model.addAttribute("employees", employeeService.getAllEmployees());
+		    return "redirect:/viewEmployee.html";	
+		}
+		else {
+			return "error1.html";
+		}  
+		
 	}
 	
 	// Add Iris Data
 	@RequestMapping(value="/iris",method=RequestMethod.POST,headers="Accept=application/json")
 	public String addIris(@RequestBody Iris iris) {
-		employeeService.addIris(iris);		
-		return "redirect:/viewEmployee.html";
+		if(Login.loggedin==true) {
+			employeeService.addIris(iris);		
+			return "redirect:/viewEmployee.html";
+		}
+		else {
+			return "error1.html";
+		}  
+		
 	}
 	
 	

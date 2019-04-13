@@ -10,7 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,6 +34,9 @@ public class Login implements Serializable{
 	 	@Column(name="password")
 	 	private String password;
 
+	 	@Transient
+	 	public static boolean loggedin=false;
+	 	
 		public long getId() {
 			return id;
 		}

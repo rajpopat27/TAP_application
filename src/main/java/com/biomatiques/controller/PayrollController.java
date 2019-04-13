@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.biomatiques.model.Login;
 import com.biomatiques.model.Payroll;
 import com.biomatiques.model.PayrollReport;
 import com.biomatiques.services.PayrollService;
@@ -26,27 +27,44 @@ public class PayrollController {
 	
 	@RequestMapping(value="/payroll.html",method=RequestMethod.GET,headers="Accept=application/json")
 	public String payrollHome() {
-		return "payroll.html";
+		if(Login.loggedin==true) {
+			return "payroll.html";	
+			}
+			else {
+				return "error1.html";
+			}
+		
 	}
 	
 	@RequestMapping(value="/viewPayroll.html",method=RequestMethod.GET,headers="Accept=application/json")
-	public String viewPayroll(Model model) {
-		payrollService.generatePayrollHours();
-		model.addAttribute("payroll", payrollService.getRemainingPayroll());
-		return "viewPayroll.html";
+	public String viewPayroll(Model model) {		
+		if(Login.loggedin==true) {
+			payrollService.generatePayrollHours();
+			model.addAttribute("payroll", payrollService.getRemainingPayroll());
+			return "viewPayroll.html";
+			}
+			else {
+				return "error1.html";
+			}
 	}
 	
 	@RequestMapping(value="/viewGeneratedPayroll.html",method=RequestMethod.GET,headers="Accept=application/json")
 	public String viewGeneratedPayroll(Model model) {
-		payrollService.generatePayrollHours();
-		model.addAttribute("payroll", payrollService.getGeneratedPayroll());
-		return "viewGeneratedPayroll.html";
+		if(Login.loggedin==true) {
+			payrollService.generatePayrollHours();
+			model.addAttribute("payroll", payrollService.getGeneratedPayroll());
+			return "viewGeneratedPayroll.html";
+			}
+			else {
+				return "error1.html";
+			}
+		
 	}
 	
 	@RequestMapping(value = "/payrollPdfReport", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> payrollReport() throws IOException {
-
+		
         List<Payroll> payroll = (List<Payroll>) payrollService.getPayrollForReport();
 
         ByteArrayInputStream bis = PayrollReport.payrollReport(payroll);
@@ -63,8 +81,13 @@ public class PayrollController {
 	
 	@RequestMapping(value="/viewHoursWorked.html",method=RequestMethod.GET,headers="Accept=application/json")
 	public String viewHoursWorked(Model model) {
+		if(Login.loggedin==true) {
+			model.addAttribute("hoursWorked",payrollService.getHoursWorked());
+			return "viewHoursWorked.html";
+			}
+			else {
+				return "error1.html";
+			}
 		
-		model.addAttribute("hoursWorked",payrollService.getHoursWorked());
-		return "viewHoursWorked.html";
 	}
 }

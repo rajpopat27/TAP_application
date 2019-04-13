@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.biomatiques.model.Employee;
+import com.biomatiques.model.Hours_worked_payroll;
 import com.biomatiques.model.Iris;
 import com.biomatiques.repository.EmployeeRepository;
 
@@ -51,7 +53,20 @@ public class EmployeeService {
 		employeeRepository.save(employee);
 	}
 	
-	
+	/*public Employee noOfEmployeePerDepartment() {
+		List<Employee> employeeList = new ArrayList<>();
+        employeeRepository.findAll().forEach(employeeList::add);
+        
+        List<Employee>temp = employeeList.stream()
+		         .collect(Collectors.groupingBy(Employee::getDepartment))
+		         .entrySet().stream()
+		         .map(e -> e.getValue().stream()
+		             .reduce((f1,f2) -> new Employee(f1.getDepartment(),f1.getNo_of_hours() + f2.getNo_of_hours())))
+		             .map(f -> f.get())
+		             .collect(Collectors.toList());
+		 return temp;
+		return employee;
+	}*/
 	
 	//Pagination
 	public Page<Employee> findPaginated(Pageable pageable) {

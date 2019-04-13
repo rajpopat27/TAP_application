@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.biomatiques.model.LeaveManagement;
+import com.biomatiques.model.Login;
 import com.biomatiques.model.ShiftSwap;
 import com.biomatiques.services.LeaveManagementService;
 
@@ -27,38 +28,72 @@ public class LeaveManagementController {
 
 	@RequestMapping(value= "/leave.html",method=RequestMethod.GET)
 	public String leaveHomePage(Model model) {
-		model.addAttribute("leave", leaveManagementService.getAllLeave());
-		return "leave";
+		if(Login.loggedin==true) {
+			model.addAttribute("leave", leaveManagementService.getAllLeave());
+			return "leave";
+		}
+		else {
+			return "error1.html";
+		}
+		
 	}
 	
 	@RequestMapping(value= "/leaveForm.html",method=RequestMethod.GET)
 	public String leaveForm(LeaveManagement leaveManagement) {
-		return "leaveForm.html";
+		
+		if(Login.loggedin==true) {
+			return "leaveForm.html";
+		}
+		else {
+			return "error1.html";
+		}
 	}
 	
 	@RequestMapping(value="/addLeave",method=RequestMethod.POST,headers="Accept=application/json")
 	public String addLeave(@Valid LeaveManagement leaveManagement,BindingResult result,Model model) throws ParseException {
-		leaveManagementService.addLeave(leaveManagement);
-		return "leave.html";
+		
+		if(Login.loggedin==true) {
+			leaveManagementService.addLeave(leaveManagement);
+			return "leave.html";
+		}
+		else {
+			return "error1.html";
+		}
 	}
 	
 	@RequestMapping(value="/updateLeave/{id}",method=RequestMethod.POST,headers="Accept=application/json")
-    public String updateLeave(@PathVariable("id") long id, @Valid LeaveManagement leaveManagement,BindingResult result, Model model ) {
-		leaveManagementService.updateLeave(leaveManagement);
-		 return "redirect:/leave.html";	
+    public String updateLeave(@PathVariable("id") long id, @Valid LeaveManagement leaveManagement,BindingResult result, Model model ) {		 
+		 if(Login.loggedin==true) {
+			 leaveManagementService.updateLeave(leaveManagement);
+			 return "redirect:/leave.html";	
+			}
+			else {
+				return "error1.html";
+			}
     }
 	
 	@RequestMapping(value="/editLeave/{id}",method=RequestMethod.GET,headers="Accept=application/json")
     public String updateLeave(@PathVariable("id") long id, Model model ) {
-		model.addAttribute("leave", leaveManagementService.getLeaveById(id));
-		 return "editLeave";	
+		if(Login.loggedin==true) {
+			model.addAttribute("leave", leaveManagementService.getLeaveById(id));
+			 return "editLeave";		
+			}
+			else {
+				return "error1.html";
+			}
+		
     }
     
     //Delete Method
 	@RequestMapping(value="/deleteLeave/{id}",method=RequestMethod.DELETE,headers="Accept=application/json")
-    public String deleteLeave(@PathVariable("id") long id) {
-		leaveManagementService.deleteLeave(id);
-		return "redirect:/leave.html";	
+    public String deleteLeave(@PathVariable("id") long id) {		
+		if(Login.loggedin==true) {
+			leaveManagementService.deleteLeave(id);
+			return "redirect:/leave.html";		
+			}
+			else {
+				return "error1.html";
+			}
     }
 	/*@RequestMapping(value="/leaveManagement",method=RequestMethod.GET,headers="Accept=application/json")
 	public ModelAndView getAllLeave() {

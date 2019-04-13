@@ -17,6 +17,7 @@ public class LoginController {
 	@RequestMapping(value= {"/loginForm"},method=RequestMethod.POST)
 	public String loginForm(Login login) {
 		if (loginService.checkLogin(login)) {
+			Login.loggedin=true;
 			return "redirect:/dashboard.html";	
 		}
 		return "redirect:/error1.html";
@@ -40,5 +41,11 @@ public class LoginController {
 	@RequestMapping(value= {"/error1.html"},method=RequestMethod.GET)
 	public String errorPage() {
 		return "error1.html";
+	}
+	
+	@RequestMapping(value= {"/logout"},method=RequestMethod.GET)
+	public String logout(Login login) {
+		Login.loggedin = false;
+		return "redirect:/login.html";
 	}
 }

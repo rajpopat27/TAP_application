@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.biomatiques.model.Employee;
+import com.biomatiques.model.Login;
 import com.biomatiques.model.ShiftSwap;
 import com.biomatiques.services.ShiftSwapService;
 
@@ -28,18 +29,36 @@ public class ShiftSwapController {
 	*/
 	@RequestMapping(value= {"/shiftSwap.html"},method=RequestMethod.GET)
 	public String shiftSwapForm(ShiftSwap shiftSwap) {
-		return "shiftSwap.html";
+		if(Login.loggedin==true) {
+			return "shiftSwap.html";
+			}
+			else {
+				return "error1.html";
+			}
+		
 	}
 	@RequestMapping(value="/addShiftSwap",method=RequestMethod.POST)
 	public String addShiftSwap(@Valid ShiftSwap shiftSwap,BindingResult result,Model model) throws ParseException{
- 		shiftSwapService.swapShift(shiftSwap);
- 		return "viewShiftSwap.html";
+		if(Login.loggedin==true) {
+			shiftSwapService.swapShift(shiftSwap);
+	 		return "viewShiftSwap.html";
+			}
+			else {
+				return "error1.html";
+			}
+ 		
 	}
 	
 	@RequestMapping(value="/viewShiftSwap.html",method=RequestMethod.GET)
 	public String getShiftSwap(Model model) throws ParseException{
- 		model.addAttribute("shiftSwap", shiftSwapService.getAllShiftSwap());
- 		return "viewShiftSwap.html";
+		if(Login.loggedin==true) {
+			model.addAttribute("shiftSwap", shiftSwapService.getAllShiftSwap());
+	 		return "viewShiftSwap.html";
+			}
+			else {
+				return "error1.html";
+			}
+ 		
 	}
 	
 	@RequestMapping(value="/editShiftSwap/{id}",method=RequestMethod.GET)
@@ -48,9 +67,14 @@ public class ShiftSwapController {
 	        employee.setId(id);
 	        return "update-employee";
 	    }*/
-	         
-	    model.addAttribute("shiftSwap",shiftSwapService.getShiftSwapById(id));
-	    return "editShiftSwap.html";	
+		if(Login.loggedin==true) {
+			model.addAttribute("shiftSwap",shiftSwapService.getShiftSwapById(id));
+		    return "editShiftSwap.html";	
+			}
+			else {
+				return "error1.html";
+			}     
+	    
 	}
 	
 	//UPDATE
@@ -60,19 +84,30 @@ public class ShiftSwapController {
 	        employee.setId(id);
 	        return "update-employee";
 	    }*/
-	         
-		shiftSwapService.updateShiftSwap(shiftSwap);
-	    //model.addAttribute("shiftSwap",employeeService.getAllEmployees());
-	    return "redirect:/viewShiftSwap.html";	
+		if(Login.loggedin==true) {
+			shiftSwapService.updateShiftSwap(shiftSwap);
+		    //model.addAttribute("shiftSwap",employeeService.getAllEmployees());
+		    return "redirect:/viewShiftSwap.html";	
+			}
+			else {
+				return "error1.html";
+			}        
+		
 	}
 	
 	//DELETE
 	@RequestMapping(value="/deleteShiftSwap/{id}",method=RequestMethod.GET)
 	public String deleteShiftSwap(@PathVariable("id") long id, Model model) throws ParseException {
+		if(Login.loggedin==true) {
+			  shiftSwapService.deleteShiftSwap(id);
+			   // model.addAttribute("shiftSwap", shiftSwapService.getAllShiftSwap());
+			    return "redirect:/viewShiftSwap.html";	
+			}
+			else {
+				return "error1.html";
+			} 
 	    //ShiftSwap shiftSwap = shiftSwapService.getShiftSwapById(id);
-	    shiftSwapService.deleteShiftSwap(id);
-	   // model.addAttribute("shiftSwap", shiftSwapService.getAllShiftSwap());
-	    return "redirect:/viewShiftSwap.html";	
+	  
 	}
 	
 }

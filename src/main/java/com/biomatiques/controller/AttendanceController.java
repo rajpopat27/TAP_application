@@ -9,47 +9,58 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
-import com.biomatiques.model.Attendance;
-import com.biomatiques.model.Iris;
-import com.biomatiques.repository.HoursWorkedPayrollRepository;
+import com.biomatiques.model.Login;
 import com.biomatiques.services.AttendanceService;
 
 @Controller
 public class AttendanceController {
-
+	
 	@Autowired
 	AttendanceService attendanceService;
 	
 	@RequestMapping(value="/attendance.html",method=RequestMethod.GET)
 	public String attendanceHome(Model model) {
-		model.addAttribute("attendance",attendanceService.getAllAttendance());
-		return "attendance";
+		
+		if(Login.loggedin==true) {
+			model.addAttribute("attendance",attendanceService.getAllAttendance());
+			return "attendance";
+			
+		}
+		else {
+			return "error1.html";
+		}
 	}
 	
 	@RequestMapping(value="/hoursWorked.html",method=RequestMethod.GET)
-	public String viewHoursWorked(Model model) {
-		model.addAttribute("hoursWorked",attendanceService.getHoursWorked());
-		return "hoursWorked";
+	public String viewHoursWorked(Model model) {		
+		if(Login.loggedin==true) {
+			model.addAttribute("hoursWorked",attendanceService.getHoursWorked());
+			return "hoursWorked";			
+		}
+		else {
+			return "error1.html";
+		}
 	}
 	
 	//ADD
 	
 	@RequestMapping(value="/irisAttendance",method=RequestMethod.POST,headers="Accept=application/json")
 	public ResponseEntity<Void> addAttendance(@RequestBody String EmpCode) throws ParseException, URISyntaxException {
- 		if(attendanceService.addAttendance(EmpCode)==true) {
-			 return ResponseEntity.created(new URI("done")).build();
-		}
-		else{
+ 		if (Login.loggedin==true) {
+ 			if(attendanceService.addAttendance(EmpCode)==true) {
+ 				 return ResponseEntity.created(new URI("done")).build();
+ 			}
+ 		}		
+		
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
-		}
+			
+ 		
 	}
 	
 	@RequestMapping(value="/iris1Attendance",method=RequestMethod.POST,headers="Accept=application/json")
@@ -92,12 +103,19 @@ public class AttendanceController {
 	//READ
 	@RequestMapping(value="/viewAttendance.html",method=RequestMethod.GET)
 	public ModelAndView getAttendance() {
-		ModelAndView model = new ModelAndView("viewAttendance.html");
-		model.addObject("attendance",attendanceService.getAllAttendance());
-		return model;
+		if(Login.loggedin==true) {
+			ModelAndView model = new ModelAndView("viewAttendance.html");
+			model.addObject("attendance",attendanceService.getAllAttendance());
+			return model;		
+		}
+		else {
+			 ModelAndView model = new ModelAndView("eror1.html");
+			 return model;
+		}
+		
 	}
 	
-	//GET ATTENDANCE BY ID
+/*	//GET ATTENDANCE BY ID
 	@RequestMapping(value="/attendance/{employeeId}",method=RequestMethod.GET)
 	public String getAttendanceByEmployeeId(@PathVariable long employeeId,Model model) {
 		model.addAttribute("employees", attendanceService.getAttendanceByEmployeeId(employeeId));
@@ -117,7 +135,7 @@ public class AttendanceController {
 		model.addAttribute("employees",  attendanceService.getAttendanceByDate(date));
 			return "view-attendance";
 		}
-	
+	*/
 	
 	 
 }

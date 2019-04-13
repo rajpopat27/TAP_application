@@ -6,10 +6,13 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.EntityResult;
+import javax.persistence.FieldResult;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,6 +24,7 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -39,6 +43,10 @@ public class Employee implements Serializable{
 
 	public Employee() {
        
+    }
+	public Employee(float indexLabel,float y) {
+	       this.indexLabel=indexLabel;
+	       this.y=y;
     }
     
 	    @Id
@@ -157,6 +165,12 @@ public class Employee implements Serializable{
         @Lob       
         public byte[] irisId;
         
+		@Transient
+		public float indexLabel;
+		
+		@Transient
+		public float y;
+		
         
 		@Column(nullable = false, updatable = false)
 	    @Temporal(TemporalType.TIMESTAMP)
@@ -366,6 +380,22 @@ public class Employee implements Serializable{
 
 		public void setUpdatedAt(Date updatedAt) {
 			this.updatedAt = updatedAt;
+		}
+
+		public float getIndexLabel() {
+			return indexLabel;
+		}
+
+		public void setIndexLabel(float indexLabel) {
+			this.indexLabel = indexLabel;
+		}
+
+		public float getY() {
+			return y;
+		}
+
+		public void setY(float y) {
+			this.y = y;
 		}
         
         
