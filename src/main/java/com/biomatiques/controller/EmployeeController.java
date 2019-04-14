@@ -80,30 +80,17 @@ public class EmployeeController {
 		
 	}
 
-	//Pagiantion
-	
-	/*@RequestMapping(value = "/viewEmployee.html", method = RequestMethod.GET)
-    public String listBooks(
-      Model model, 
-      @RequestParam("page") Optional<Integer> page, 
-      @RequestParam("size") Optional<Integer> size) {
-        int currentPage = page.orElse(1);
-        int pageSize = size.orElse(1);
- 
-        Page<Employee> employeePage = employeeService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
- 
-        model.addAttribute("employeePage", employeePage);
- 
-        int totalPages = employeePage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                .boxed()
-                .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
- 
-        return "viewEmployee.html";
-    }*/
+	@RequestMapping(value= {"/report.html"},method=RequestMethod.GET)
+	public String reportPage() {
+		if(Login.loggedin==true) {
+			return "report.html";
+		}
+		else {
+			return "error1.html";
+		}
+		
+	}
+
 	//ADD
 	@RequestMapping(value="/addEmployee",method=RequestMethod.POST)
 	public String addEmployee (@Valid Employee employee,BindingResult result, Model model) {

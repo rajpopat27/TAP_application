@@ -1,32 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
 
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-@font-face {
-  font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
-}
-
-@font-face {
-  font-family: Montserrat-Bold;
-  src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
-}
-
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
 
 * {
 	margin: 0px; 
@@ -36,12 +10,12 @@
 
 body, html {
 	height: 100%;
-	font-family: sans-serif;
+	font-family: 'Quicksand', sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
+	font-family: Quicksand;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -58,7 +32,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-  color: #57b846;
+  color: rgba(29,187,214, 1);
 }
 
 /*---------------------------------------------*/
@@ -67,7 +41,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: Poppins-Regular;
+	font-family: Quicksand;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -134,14 +108,14 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  font-family: Poppins-Regular;
+  font-family: Quicksand;
   font-size: 13px;
   line-height: 1.5;
   color: #999999;
 }
 
 .txt2 {
-  font-family: Poppins-Regular;
+  font-family: Quicksand;
   font-size: 13px;
   line-height: 1.5;
   color: #666666;
@@ -168,11 +142,8 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #9053c7;
-  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  background: rgb(0,80,117);
+  background: linear-gradient(146deg, rgba(0,80,117,1) 0%, rgba(17,125,172,1) 25%, rgba(24,155,211,1) 50%, rgba(29,187,214,1) 75%, rgba(114,199,236,1) 100%);
 }
 
 .wrap-login100 {
@@ -209,7 +180,7 @@ iframe {
 }
 
 .login100-form-title {
-  font-family: Poppins-Bold;
+  font-family: Quicksand;
   font-size: 24px;
   color: #333333;
   line-height: 1.2;
@@ -230,7 +201,7 @@ iframe {
 }
 
 .input100 {
-  font-family: Poppins-Medium;
+  font-family: Quicksand;
   font-size: 15px;
   line-height: 1.5;
   color: #666666;
@@ -256,7 +227,7 @@ iframe {
   width: 100%;
   height: 100%;
   box-shadow: 0px 0px 0px 0px;
-  color: rgba(87,184,70, 0.8);
+  color: rgba(29,187,214, 1);
 }
 
 .input100:focus + .focus-input100 {
@@ -304,7 +275,7 @@ iframe {
 }
 
 .input100:focus + .focus-input100 + .symbol-input100 {
-  color: #57b846;
+  color: rgba(29,187,214, 1);
   padding-left: 28px;
 }
 
@@ -323,7 +294,7 @@ iframe {
 }
 
 .login100-form-btn {
-  font-family: Montserrat-Bold;
+  font-family: Quicksand;
   font-size: 15px;
   line-height: 1.5;
   color: #fff;
@@ -332,7 +303,7 @@ iframe {
   width: 100%;
   height: 50px;
   border-radius: 25px;
-  background: #57b846;
+  background: rgba(17,125,172,1);
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -349,7 +320,7 @@ iframe {
 }
 
 .login100-form-btn:hover {
-  background: #333333;
+  background: rgba(0,80,117,1);
 }
 
 
@@ -418,7 +389,7 @@ iframe {
   right: 8px;
   pointer-events: none;
 
-  font-family: Poppins-Medium;
+  font-family: Quicksand;
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
