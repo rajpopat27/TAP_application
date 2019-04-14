@@ -57,6 +57,12 @@ public class AttendanceService {
 	        return attendanceList;
 	    }
 	 
+	 public List<Attendance> liveClockIn() {
+	        List<Attendance> attendanceList = new ArrayList<>();
+	        attendanceList =  attendanceRepository.liveClockIn();
+	        return attendanceList;
+	    }
+	 
 	 public List<Attendance> getAttendanceByEmployeeId(long employeeId) {
 	        List<Attendance> attendanceList = new ArrayList<>();
 	        attendanceRepository.findByEmployeeId(employeeId).forEach(attendanceList::add);

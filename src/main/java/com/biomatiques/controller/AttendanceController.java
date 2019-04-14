@@ -52,15 +52,12 @@ public class AttendanceController {
 	
 	@RequestMapping(value="/irisAttendance",method=RequestMethod.POST,headers="Accept=application/json")
 	public ResponseEntity<Void> addAttendance(@RequestBody String EmpCode) throws ParseException, URISyntaxException {
- 		if (Login.loggedin==true) {
  			if(attendanceService.addAttendance(EmpCode)==true) {
- 				 return ResponseEntity.created(new URI("done")).build();
- 			}
+ 				 return ResponseEntity.created(new URI("done")).build(); 			
  		}		
-		
-			return ResponseEntity.status(HttpStatus.CONFLICT).build();
-			
- 		
+ 			else {
+ 				return ResponseEntity.status(HttpStatus.CONFLICT).build();
+ 			}		
 	}
 	
 	@RequestMapping(value="/iris1Attendance",method=RequestMethod.POST,headers="Accept=application/json")

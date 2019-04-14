@@ -3,6 +3,7 @@ package com.biomatiques.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,14 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.servlet.ModelAndView;
 
 import com.biomatiques.model.Employee;
 import com.biomatiques.model.Iris;
 import com.biomatiques.model.Login;
+import com.biomatiques.services.AttendanceService;
 import com.biomatiques.services.EmployeeService;
 import com.biomatiques.services.ShiftService;
-import java.util.List;
 
 @Controller	
 public class EmployeeController {
@@ -25,10 +26,18 @@ public class EmployeeController {
 	EmployeeService employeeService;
 	@Autowired
 	ShiftService shiftService;
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	@Autowired
+	AttendanceService attendanceService;
+	
 	
 	@RequestMapping(value= {"/index","/dashboard.html"},method=RequestMethod.GET)
 	public String index(Model model) {
 		if(Login.loggedin==true) {
+			//JDBC Query
+			 int i = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM employee", Integer.class);
+			model.addAttribute("attendance", attendanceService.liveClockIn());
 			model.addAttribute("totalEmployee",employeeService.getAllEmployees().stream().count());
 			model.addAttribute("totalShift", shiftService.getAllShifts().stream().count());	
 			//model.addAttribute("indexLabel", employeeService.get)
@@ -169,7 +178,10 @@ public class EmployeeController {
 		
 	}
 	
-	
+	@RequestMapping(value = "/redirect", method = RequestMethod.GET)
+	public ModelAndView method() {
+	    return new ModelAndView("redirect:" + "https://www.google.com");
+	}
 	
 	
 	
