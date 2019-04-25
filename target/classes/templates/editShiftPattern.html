@@ -109,73 +109,178 @@
 
         <form action="#" th:action="@{/updateShiftPattern/{id}(id=${shiftPattern.id})}" th:object="${shiftPattern}" method="POST">
             
-            <div class="form-group">
-                <div class="form-row">
-                        <div class="col-md-4">
-                                <div class="form-label-group">
-                                  <input type="text" id="id" th:field="*{id}" class="form-control" placeholder="id" required="required" > 
-                                  <label for="id">Employee ID</label>
-                                </div>
-                            </div>
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                          <input type="text" id="sunday" th:field="*{sunday}" class="form-control" placeholder="sunday" required="required" > 
-                          <label for="sunday">sunday</label>
-                        </div>
+          <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <div class="form-label-group">
                     </div>
                 </div>
+              <div class="col-md-2">
+                  <div class="form-label-group">
+                    <label>Employee ID</label>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-label-group">
+                  <select th:field="*{id}" class="form-control" placeholder="Employee ID">
+                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.id}+' : '+${employee.firstName}"></option>
+                  </select>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                          <input type="text" id="monday" th:field="*{monday}" class="form-control" placeholder="Monday" required="required" > 
-                          <label for="monday">Monday</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                          <input type="text" id="tuesday" th:field="*{tuesday}" class="form-control" placeholder="Tuesday" required="required" > 
-                          <label for="tuesday">Tuesday</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                            <input type="text" id="wednesday" th:field="*{wednesday}" class="form-control" placeholder="Wednesday" required="required" > 
-                            <label for="wednesday">Wednesday</label>
-                        </div>
+          <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <div class="form-label-group">
                     </div>
                 </div>
+              <div class="col-md-2">
+                  <div class="form-label-group">
+                    <label>Sunday</label>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-label-group">
+                  <select th:field="*{sunday}" class="form-control" placeholder="Sunday">
+                    <option th:each="shift : ${shifts}" th:value="${shift.id}" th:text="${shift.id}+' : '+${shift.shiftName}"></option>
+                  </select>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                          <input type="text" id="thursday" th:field="*{thursday}" class="form-control" placeholder="thursday" required="required" > 
-                          <label for="monday">thursday</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                          <input type="text" id="friday" th:field="*{friday}" class="form-control" placeholder="friday" required="required" > 
-                          <label for="tuesday">Tuesday</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-label-group">
-                            <input type="text" id="saturday" th:field="*{saturday}" class="form-control" placeholder="saturday" required="required" > 
-                            <label for="saturday">saturday</label>
-                        </div>
+          <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <div class="form-label-group">
                     </div>
                 </div>
+              <div class="col-md-2">
+                  <div class="form-label-group">
+                    <label>Monday</label>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-label-group">
+                  <select th:field="*{monday}" class="form-control" placeholder="Monday">
+                    <option th:each="shift : ${shifts}" th:value="${shift.id}" th:text="${shift.id}+' : '+${shift.shiftName}"></option>
+                  </select>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <div class="form-label-group">
+                    </div>
+                </div>
+              <div class="col-md-2">
+                  <div class="form-label-group">
+                    <label>Tuesday</label>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-label-group">
+                  <select th:field="*{tuesday}" class="form-control" placeholder="Tuesday">
+                    <option th:each="shift : ${shifts}" th:value="${shift.id}" th:text="${shift.id}+' : '+${shift.shiftName}"></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <div class="form-label-group">
+                    </div>
+                </div>
+              <div class="col-md-2">
+                  <div class="form-label-group">
+                    <label>Wednesday</label>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-label-group">
+                  <select th:field="*{wednesday}" class="form-control" placeholder="Wednesday">
+                    <option th:each="shift : ${shifts}" th:value="${shift.id}" th:text="${shift.id}+' : '+${shift.shiftName}"></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <div class="form-label-group">
+                    </div>
+                </div>
+              <div class="col-md-2">
+                  <div class="form-label-group">
+                    <label>Thursday</label>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-label-group">
+                  <select th:field="*{thursday}" class="form-control" placeholder="Thursday">
+                    <option th:each="shift : ${shifts}" th:value="${shift.id}" th:text="${shift.id}+' : '+${shift.shiftName}"></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <div class="form-label-group">
+                    </div>
+                </div>
+              <div class="col-md-2">
+                  <div class="form-label-group">
+                    <label>Friday</label>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-label-group">
+                  <select th:field="*{friday}" class="form-control" placeholder="Friday">
+                    <option th:each="shift : ${shifts}" th:value="${shift.id}" th:text="${shift.id}+' : '+${shift.shiftName}"></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <div class="form-label-group">
+                    </div>
+                </div>
+              <div class="col-md-2">
+                  <div class="form-label-group">
+                    <label>Saturday</label>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-label-group">
+                  <select th:field="*{saturday}" class="form-control" placeholder="Saturday">
+                    <option th:each="shift : ${shifts}" th:value="${shift.id}" th:text="${shift.id}+' : '+${shift.shiftName}"></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
 
             <div class="form-group">
                 <div class="form-row" style="padding-left: 34%;">
                 <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary btn-block" > Add Shift Pattern</button>
+                        <button type="submit" class="btn btn-primary btn-block" > Update Shift Pattern</button>
                 </div>
                 <div class="col-md-3">
                         <button type="reset" class="btn btn-primary btn-block" > Reset </button>

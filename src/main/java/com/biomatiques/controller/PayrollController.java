@@ -61,7 +61,7 @@ public class PayrollController {
 		
 	}
 	
-	@RequestMapping(value = "/payrollPdfReport", method = RequestMethod.GET,
+	/*@RequestMapping(value = "/payrollPdfReport", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> payrollReport() throws IOException {
 		
@@ -77,7 +77,13 @@ public class PayrollController {
                 .headers(headers)
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(bis));
+    }*/
+	
+	@RequestMapping(value = "/payrollPdfReport", method = RequestMethod.GET)
+    public String payrollReport1()  {
+		return "payroll.html";	       
     }
+	
 	
 	@RequestMapping(value="/viewHoursWorked.html",method=RequestMethod.GET,headers="Accept=application/json")
 	public String viewHoursWorked(Model model) {

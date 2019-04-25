@@ -160,10 +160,10 @@
                     <div class="col-md-4">
                         <div class="form-label-group">
                                 <select th:field="*{gender}" class="form-control">
-                                        <option th:value="'Male'" th:text="Male"></option>
-                                        <option th:value="'Female'" th:text="Female"></option>
+                                    <option value="">Gender</option>
+                                    <option th:value="'Male'" th:text="Male"></option>
+                                    <option th:value="'Female'" th:text="Female"></option>
                                 </select> 
-                            <!-- <label for="gender">Gender</label> -->
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -255,8 +255,10 @@
                     <div class="form-row">
                         <div class="col-md-4">
                             <div class="form-label-group">
-                                <input type="text" id="department" th:field="*{department}" class="form-control" placeholder="Department"> 
-                                <label for="department">Department</label>
+                              <select th:field="*{department}" class="form-control" placeholder="Department">
+                                <option value="">Select department</option>
+                                <option th:each="department : ${departments}" th:value="${department.departmentName}" th:text="${department.departmentName}"></option>
+                              </select>
                             </div>
                         </div>
                         <div class="col-md-4">

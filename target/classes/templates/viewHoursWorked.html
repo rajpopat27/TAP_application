@@ -121,8 +121,6 @@
                 <thead>
                   <tr>
                         <th>Employee ID</th>
-                        <th>Time_out</th>
-                        <th>Time_in</th>
                         <th>Hours worked</th>
                         <th>Payroll</th>
                   </tr>
@@ -130,8 +128,6 @@
                 <tbody>
                         <tr th:each="hoursWorked :${hoursWorked}">
                                 <td th:text="${hoursWorked.emp_id}"></td>
-                                <td th:text="${hoursWorked.time_out}"></td>
-                                <td th:text="${hoursWorked.time_in}"></td>
                                 <td th:text="${hoursWorked.No_of_hours}"></td>
                                 <td th:text="${hoursWorked.payroll_generated} ? 'Generated' : 'Pending'"></td>
                         </tr>

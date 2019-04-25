@@ -53,21 +53,6 @@ public class EmployeeService {
 		employeeRepository.save(employee);
 	}
 	
-	/*public Employee noOfEmployeePerDepartment() {
-		List<Employee> employeeList = new ArrayList<>();
-        employeeRepository.findAll().forEach(employeeList::add);
-        
-        List<Employee>temp = employeeList.stream()
-		         .collect(Collectors.groupingBy(Employee::getDepartment))
-		         .entrySet().stream()
-		         .map(e -> e.getValue().stream()
-		             .reduce((f1,f2) -> new Employee(f1.getDepartment(),f1.getNo_of_hours() + f2.getNo_of_hours())))
-		             .map(f -> f.get())
-		             .collect(Collectors.toList());
-		 return temp;
-		return employee;
-	}*/
-	
 	//Pagination
 	public Page<Employee> findPaginated(Pageable pageable) {
         int pageSize = pageable.getPageSize();

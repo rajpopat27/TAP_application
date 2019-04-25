@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>TAP - Swap shift</title>
+  <title>TAP - Add department</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -63,8 +63,8 @@
             <span>Dashboard</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
+        <li class="nav-item active">
+          <a class="nav-link" href="employee.html">
             <i class="fas fa-user-tie"></i>
             <span>Employee</span></a>
         </li>
@@ -73,7 +73,7 @@
             <i class="fas fa-users"></i>
             <span>Attendance</span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="shift.html">
             <i class="fas fa-calendar-alt"></i>
             <span>Shift</span></a>
@@ -101,79 +101,28 @@
 
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="shift.html">Shift</a>
-          </li>
-          <li class="breadcrumb-item active">Swap Shift</li>
+            <li class="breadcrumb-item">
+                <a href="employee.html">Employee</a>
+              </li>
+          <li class="breadcrumb-item active">Add Department</li>
         </ol>
 
-        <form action="#" th:action="@{/addShiftSwap}" th:object="${shiftSwap}" method="POST">
-
-          <div class="form-group">
-            <div class="form-row">
-                <div class="col-md-3">
-                    <div class="form-label-group">
+        <form action="#" th:action="@{/addDepartment}" th:object="${department}" method="POST">
+            
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-label-group">
+                          <input type="text" id="departmentName" th:field="*{departmentName}" class="form-control" placeholder="Department name" required="required" > 
+                          <label for="departmentName">Department Name</label>
+                        </div>
                     </div>
                 </div>
-              <div class="col-md-2">
-                  <div class="form-label-group">
-                    <label>First Employee ID</label>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-label-group">
-                  <select th:field="*{emp1}" class="form-control" placeholder="Employee ID">
-                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.id}+' : '+${employee.firstName}"></option>
-                  </select>
-                </div>
-              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-                <div class="col-md-3">
-                    <div class="form-label-group">
-                    </div>
-                </div>
-              <div class="col-md-2">
-                  <div class="form-label-group">
-                    <label>Second Employee ID</label>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-label-group">
-                  <select th:field="*{emp2}" class="form-control" placeholder="Employee ID">
-                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.id}+' : '+${employee.firstName}"></option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-                <div class="col-md-3">
-                    <div class="form-label-group">
-                    </div>
-                </div>
-              <div class="col-md-2">
-                  <div class="form-label-group">
-                    <label>Date</label>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-label-group">
-                    <input type="text" id="date" th:field="*{date}" class="form-control" placeholder="Date" required="required" > 
-                    <label for="date">Date</label>
-                </div>
-            </div>
-            </div>
-          </div>
-
-
             <div class="form-group">
                 <div class="form-row" style="padding-left: 34%;">
-                <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary btn-block" > Confirm Swap </button>
+                <div class="col-md-3" >
+                        <button type="submit" class="btn btn-primary btn-block" > Add Department </button>
                 </div>
                 <div class="col-md-3">
                         <button type="reset" class="btn btn-primary btn-block" > Reset </button>
@@ -182,6 +131,36 @@
             </div>
 
         </form>
+        
+
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Departments</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Department Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="department : ${departments}">
+                      <td th:text="${department.id}"></td>
+                      <td th:text="${department.departmentName}"></td>
+                      <td><a th:href="@{/editDepartment/{id}(id=${department.id})}">Edit</a></td>
+                      <td><a th:href="@{/deleteDepartment/{id}(id=${department.id})}">Delete</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
 
       </div>
       <!-- /.container-fluid -->

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.biomatiques.model.Login;
 import com.biomatiques.model.ShiftPattern;
+import com.biomatiques.services.EmployeeService;
 import com.biomatiques.services.ShiftPatternService;
+import com.biomatiques.services.ShiftService;
 
 @Controller
 public class ShiftPatternController {
@@ -20,15 +22,23 @@ public class ShiftPatternController {
 	@Autowired
     ShiftPatternService shiftPatternService;
     
+	@Autowired
+    ShiftService shiftService;
+	
+	@Autowired
+	EmployeeService employeeService;
+	
 //	@RequestMapping(method = RequestMethod.GET, value = "/shiftPatternHome")
 //    public String getAllShiftPattern(){
 //        return "shiftPatternHome";
 //    }
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/shiftPatternForm.html")
-    public String shiftPatternForm(ShiftPattern shiftPattern){
+    public String shiftPatternForm(ShiftPattern shiftPattern, Model model){
 		if(Login.loggedin==true) {
-			 return "shiftPatternForm";
+			model.addAttribute("employees", employeeService.getAllEmployees());
+			model.addAttribute("shifts", shiftService.getAllShifts());
+			return "shiftPatternForm";
 			}
 			else {
 				return "error1.html";
@@ -57,6 +67,8 @@ public class ShiftPatternController {
     @RequestMapping(value="/editShiftPattern/{id}",method=RequestMethod.GET)
     public String editShiftById(@PathVariable Long id,Model model) {
     	if(Login.loggedin==true) {
+    		model.addAttribute("employees", employeeService.getAllEmployees());
+			model.addAttribute("shifts", shiftService.getAllShifts());
     		model.addAttribute("shiftPattern",shiftPatternService.getShiftPatternById(id));
         	return "editShiftPattern";
 			}

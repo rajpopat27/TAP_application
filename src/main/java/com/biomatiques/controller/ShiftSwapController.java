@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.biomatiques.model.Employee;
 import com.biomatiques.model.Login;
 import com.biomatiques.model.ShiftSwap;
+import com.biomatiques.services.EmployeeService;
 import com.biomatiques.services.ShiftSwapService;
 
 @Controller
@@ -22,14 +23,19 @@ public class ShiftSwapController {
 
 	@Autowired
 	ShiftSwapService shiftSwapService;
+	
+	@Autowired
+	EmployeeService employeeService;
+	
 	/*@RequestMapping(value="/shiftSwap",method=RequestMethod.GET)
 	public String shiftSwap(ShiftSwap shiftSwap) {
 		return "shiftSwap-home";
 	}
 	*/
 	@RequestMapping(value= {"/shiftSwap.html"},method=RequestMethod.GET)
-	public String shiftSwapForm(ShiftSwap shiftSwap) {
+	public String shiftSwapForm(ShiftSwap shiftSwap, Model model) {
 		if(Login.loggedin==true) {
+			model.addAttribute("employees", employeeService.getAllEmployees());
 			return "shiftSwap.html";
 			}
 			else {
@@ -37,6 +43,7 @@ public class ShiftSwapController {
 			}
 		
 	}
+	
 	@RequestMapping(value="/addShiftSwap",method=RequestMethod.POST)
 	public String addShiftSwap(@Valid ShiftSwap shiftSwap,BindingResult result,Model model) throws ParseException{
 		if(Login.loggedin==true) {
@@ -68,6 +75,7 @@ public class ShiftSwapController {
 	        return "update-employee";
 	    }*/
 		if(Login.loggedin==true) {
+			model.addAttribute("employees", employeeService.getAllEmployees());
 			model.addAttribute("shiftSwap",shiftSwapService.getShiftSwapById(id));
 		    return "editShiftSwap.html";	
 			}

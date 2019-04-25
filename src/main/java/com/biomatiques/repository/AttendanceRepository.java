@@ -21,4 +21,5 @@ public interface AttendanceRepository extends CrudRepository <Attendance,Long> {
 	
 	@Query(value="SELECT * FROM attendance ORDER by id desc limit 5 ",nativeQuery=true)
 	public List<Attendance> liveClockIn();
+
 }
